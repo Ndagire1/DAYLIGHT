@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#f3f4ed">
+	<title>Daylight | Daily Dashboard</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<main class="dashboard">
+		<!-- Brand and date shared across the dashboard. -->
+		<header class="page-header">
+			<a class="brand" href="#top" aria-label="Daylight dashboard home">Daylight<span aria-hidden="true">.</span></a>
+			<p class="header-date" id="header-date">Thursday, October 1 2026</p>
+		</header>
+
+		<!-- The four sections below become the dashboard grid cards. -->
+		<div class="dashboard-grid" id="top">
+			<!-- Greeting, editable name, and clock. -->
+			<section class="card greeting-card" aria-labelledby="greeting">
+				<div>
+					<p class="eyebrow">YOUR DAILY OVERVIEW</p>
+					<h1 id="greeting">Good morning, <span id="greeting-name">Mable</span></h1>
+					<p class="greeting-message">A fresh page, and a little room to make it yours.</p>
+					<form class="name-form" id="name-form">
+						<label for="name-input">Your name</label>
+						<input id="name-input" name="name" type="text" value="Alex" maxlength="40" autocomplete="given-name" required>
+						<button type="submit">Save name</button>
+						<span id="name-save-status" aria-live="polite"></span>
+					</form>
+				</div>
+				<div class="clock" aria-label="Local time">
+					<time id="clock-time">08:30 AM</time>
+					<span id="clock-date">Thursday, October 1</span>
+				</div>
+			</section>
+
+			<!-- City search, current conditions, and forecast. The IDs are updated by script.js. -->
+			<section class="card weather-card" aria-labelledby="weather-title">
+				<div class="card-heading">
+					<div>
+						<p class="eyebrow">OUTSIDE, RIGHT NOW</p>
+						<h2 id="weather-title">Weather</h2>
+					</div>
+					<div class="unit-switch" role="group" aria-label="Temperature unit">
+						<button class="unit-button is-active" type="button" data-unit="celsius" aria-pressed="true">&deg;C</button>
+						<button class="unit-button" type="button" data-unit="fahrenheit" aria-pressed="false">&deg;F</button>
+					</div>
+				</div>
+
+				<form class="city-search" id="city-form">
+					<label class="visually-hidden" for="city-input">Search for a city</label>
+					<input id="city-input" name="city" type="search" placeholder="Find a city" autocomplete="off" value="Kampala" required>
+					<button type="submit">Search</button>
+				</form>
+				<button class="location-button" id="location-button" type="button">Use my location</button>
+
+				<div class="weather-current" aria-live="polite" aria-atomic="true">
+					<div class="weather-main">
+						<span class="weather-symbol" id="weather-symbol" aria-hidden="true">&#9728;</span>
+						<div>
+							<p class="weather-temperature" id="weather-temperature">24&deg;</p>
+							<p class="weather-description" id="weather-description">Mostly sunny</p>
+						</div>
+					</div>
+					<p class="weather-place" id="weather-place">Kampala, Uganda</p>
+					<div class="weather-details">
+						<div><span>FEELS LIKE</span><strong id="feels-like">25&deg;</strong></div>
+						<div><span>WIND</span><strong id="wind-speed">8 km/h</strong></div>
+						<div><span>HIGH / LOW</span><strong id="high-low">27&deg; / 18&deg;</strong></div>
+					</div>
+				</div>
+
+				<div class="forecast-block">
+					<p class="eyebrow">THE NEXT THREE DAYS</p>
+					<div class="forecast-list" id="forecast-list">
+						<div class="forecast-day"><span>Today</span><span aria-hidden="true">&#9728;</span><strong>27&deg; <span>18&deg;</span></strong></div>
+						<div class="forecast-day"><span>Fri</span><span aria-hidden="true">&#9925;</span><strong>26&deg; <span>19&deg;</span></strong></div>
+						<div class="forecast-day"><span>Sat</span><span aria-hidden="true">&#9729;</span><strong>25&deg; <span>18&deg;</span></strong></div>
+					</div>
+				</div>
+				<p class="weather-credit">Weather data by Open-Meteo</p>
+			</section>
+
+			<!-- Habit checkboxes and progress display. -->
+			<section class="card habits-card" aria-labelledby="habits-title">
+				<div class="card-heading">
+					<div>
+						<p class="eyebrow">SMALL STEPS, REAL MOMENTUM</p>
+						<h2 id="habits-title">Daily habits</h2>
+					</div>
+					<span class="habit-count" id="habit-count">0 / 4</span>
+				</div>
+				<p class="habits-intro">Show up for the little things.</p>
+				<div class="progress-track" id="habit-progress" role="progressbar" aria-label="Daily habits completed" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+					<span class="progress-fill" id="progress-fill"></span>
+				</div>
+				<p class="progress-caption" id="progress-caption">Your day is wide open.</p>
+				<ul class="habit-list" id="habit-list">
+					<li><label class="habit-item"><input class="habit-checkbox" type="checkbox" data-habit-id="water"><span>Drink a glass of water</span></label></li>
+					<li><label class="habit-item"><input class="habit-checkbox" type="checkbox" data-habit-id="move"><span>Move your body</span></label></li>
+					<li><label class="habit-item"><input class="habit-checkbox" type="checkbox" data-habit-id="read"><span>Read for 10 minutes</span></label></li>
+					<li><label class="habit-item"><input class="habit-checkbox" type="checkbox" data-habit-id="outside"><span>Get some fresh air</span></label></li>
+				</ul>
+				<button class="reset-button" id="reset-habits" type="button">Reset today's habits</button>
+			</section>
+
+			<!-- Daily note and save-status display. -->
+			<section class="card notes-card" aria-labelledby="notes-title">
+				<p class="eyebrow">A MOMENT FOR YOURSELF</p>
+				<h2 id="notes-title">What matters today?</h2>
+				<p class="notes-prompt">One thought, one intention, one thing at a time.</p>
+				<label class="visually-hidden" for="daily-note">Your note for today</label>
+				<textarea id="daily-note" maxlength="500" placeholder="Today, I want to..."></textarea>
+				<div class="notes-footer">
+					<span id="save-status" aria-live="polite">Saved on this device</span>
+					<span id="character-count">0 / 500</span>
+				</div>
+			</section>
+		</div>
+
+		<footer class="page-footer"><span>Made for the everyday.</span><span id="footer-year">Daylight</span></footer>
+	</main>
+</body>
+</html>
